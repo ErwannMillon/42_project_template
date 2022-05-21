@@ -1,0 +1,3 @@
+[submodule "srcs/libftextended"]
+	path = srcs/libftextended
+	url = git@github.com:ErwannMillon/libftextended.git

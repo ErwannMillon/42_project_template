@@ -1,0 +1,72 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/gmillon/Desktop/Projects/push_swap'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./srcs/libftextended
+make[1]: Entering directory `/Users/gmillon/Desktop/Projects/push_swap/srcs/libftextended'
+gcc -Wall -Wextra -Werror -I./headers -c ft_get_list_index.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_print_arr.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_bubblesort.c
+gcc -Wall -Wextra -Werror -I./headers -c put_utils.c
+gcc -Wall -Wextra -Werror -I./headers -c input_type_handlers.c
+gcc -Wall -Wextra -Werror -I./headers -c formats_char.c
+gcc -Wall -Wextra -Werror -I./headers -c formats_num.c
+gcc -Wall -Wextra -Werror -I./headers -c formats_num2.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_printf.c
+gcc -Wall -Wextra -Werror -I./headers -c hex_convert.c
+gcc -Wall -Wextra -Werror -I./headers -c parse_utils.c
+gcc -Wall -Wextra -Werror -I./headers -c get_next_line.c
+gcc -Wall -Wextra -Werror -I./headers -c get_next_line_utils.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_atoi.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_bzero.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_calloc.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_isalnum.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_isalpha.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_isascii.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_isdigit.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_islower.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_isprint.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_isupper.c
+ 
+gcc -Wall -Wextra -Werror -I./headers -c ft_itoa.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_memchr.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_memcmp.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_memcpy.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_memmove.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_memset.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_putchar_fd.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_putendl_fd.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_putnbr_fd.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_putstr_fd.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_split.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strchr.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strdup.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_striteri.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strjoin.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strlcat.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strlcpy.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strlen.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strmapi.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strncmp.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strnstr.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strrchr.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_strtrim.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_substr.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_tolower.c
+gcc -Wall -Wextra -Werror -I./headers -c ft_toupper.c
+ar -crs libft.a ft_get_list_index.o ft_print_arr.o ft_bubblesort.o put_utils.o input_type_handlers.o formats_char.o formats_num.o formats_num2.o ft_printf.o hex_convert.o parse_utils.o get_next_line.o get_next_line_utils.o ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_islower.o ft_isprint.o ft_isupper.o ft_itoa.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_split.o ft_strchr.o ft_strdup.o ft_striteri.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o
+make[1]: Leaving directory `/Users/gmillon/Desktop/Projects/push_swap/srcs/libftextended'
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/main.c -o srcs/main.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/input_parse.c -o srcs/input_parse.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/list_utils.c -o srcs/list_utils.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/stack_operations.c -o srcs/stack_operations.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/lis_algo.c -o srcs/lis_algo.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/lis_algo2.c -o srcs/lis_algo2.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/cleanup_functions.c -o srcs/cleanup_functions.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/list_search.c -o srcs/list_search.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/num_utils.c -o srcs/num_utils.o
+ 
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/move_operations.c -o srcs/move_operations.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/path_find_from_b.c -o srcs/path_find_from_b.o
+gcc -ggdb3 -I./headers -I./srcs/libftextended/headers -c srcs/move_unsorted_to_b.c -o srcs/move_unsorted_to_b.o
+gcc -ggdb3 ./srcs/main.o ./srcs/input_parse.o ./srcs/list_utils.o ./srcs/stack_operations.o ./srcs/lis_algo.o ./srcs/lis_algo2.o ./srcs/cleanup_functions.o ./srcs/list_search.o ./srcs/num_utils.o ./srcs/move_operations.o ./srcs/path_find_from_b.o ./srcs/move_unsorted_to_b.o -o push_swap ./srcs/libftextended/libft.a
+make: Leaving directory `/Users/gmillon/Desktop/Projects/push_swap'
+ 

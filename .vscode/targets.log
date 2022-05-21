@@ -1,0 +1,412 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+
+# Make data base, printed on Sat May 21 14:23:25 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from `Makefile', line 19)
+LIBFTINCLUDES = $(LIBFTDIR)/headers
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/gmillon/Desktop/Projects/push_swap
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 14)
+CFLAGS = -Wall -Wextra -Werror
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from `Makefile', line 20)
+SRCSPREFIX = $(addprefix $(SRCDIR)/, $(SRCS))
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 18)
+LIBFTDIR = $(SRCDIR)/libftextended
+# makefile (from `Makefile', line 21)
+OBJS := ./srcs/main.o ./srcs/input_parse.o ./srcs/list_utils.o ./srcs/stack_operations.o ./srcs/lis_algo.o ./srcs/lis_algo2.o ./srcs/cleanup_functions.o ./srcs/list_search.o ./srcs/num_utils.o ./srcs/move_operations.o ./srcs/path_find_from_b.o ./srcs/move_unsorted_to_b.o
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000kdm0004ld/T/vscode-ipc-a463d41a-8ab8-47df-beae-c9541b37fe24.sock
+# environment
+VSCODE_CWD = /
+# environment
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.bIQ0EykmML/Render
+# environment
+PATH = /usr/bin:/bin:/usr/sbin:/sbin
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.uG7MlcImik/Listeners
+# makefile (from `Makefile', line 16)
+SRCDIR = ./srcs
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/gmillon/Desktop/Projects/push_swap
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /Users/gmillon
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/gmillon/Library/Application Support/Code/CachedData/379476f0e13988d90fab105c5c19e7abc8b1dea8
+# environment
+LOGNAME = gmillon
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from `Makefile', line 1)
+SRCS := main.c input_parse.c list_utils.c stack_operations.c lis_algo.c lis_algo2.c cleanup_functions.c list_search.c num_utils.c move_operations.c path_find_from_b.c move_unsorted_to_b.c
+# environment
+SHLVL = 1
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = gmillon
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 13)
+NAME = push_swap
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n0000kdm0004ld/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/gmillon/Library/Application Support/Code/1.59.0-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from `Makefile', line 17)
+ASAN = -fsanitize=address -g
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x126D:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# environment
+VSCODE_BROWSER_CODE_LOADING = bypassHeatCheck
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# makefile (from `Makefile', line 15)
+INCLUDEDIR = ./headers
+# environment
+SECURITYSESSIONID = 186a7
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 85617
+# variable set hash-table stats:
+# Load=74/1024=7%, Rehash=0, Collisions=8/117=7%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777224, inode 769790): 11 files, no impossibilities.
+# srcs (device 16777224, inode 1097171): 16 files, no impossibilities so far.
+
+# 27 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+%.o: %.c
+#  commands to execute (from `Makefile', line 25):
+	gcc -ggdb3 -I$(INCLUDEDIR) -I$(LIBFTINCLUDES) -c $< -o $@
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+asan: srcs/main.o srcs/input_parse.o srcs/list_utils.o srcs/stack_operations.o srcs/lis_algo.o srcs/lis_algo2.o srcs/cleanup_functions.o srcs/list_search.o srcs/num_utils.o srcs/move_operations.o srcs/path_find_from_b.o srcs/move_unsorted_to_b.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 34):
+	gcc -fsanitize=address $(OBJS) -o $(NAME)
+	
+
+# Not a target:
+srcs/cleanup_functions.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: push_swap
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/lis_algo2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+git:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 36):
+	git add $(SRCSPREFIX) Makefile $(INCLUDEDIR)
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-21 13:57:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-21 13:56:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/num_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+test: push_swap
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 32):
+	gcc -ggdb $(SRCDIR)/main.c $(SRCS) $(LIBFTDIR)/libft.a
+	
+
+# Not a target:
+srcs/input_parse.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/libftextended/libft.a:
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-20 15:36:13
+#  File has been updated.
+#  Successfully updated.
+#  commands to execute (from `Makefile', line 30):
+	$(MAKE) -C $(LIBFTDIR)
+	
+
+# Not a target:
+srcs/path_find_from_b.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/list_search.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+# Not a target:
+srcs/move_operations.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 41):
+	$(MAKE) -C $(LIBFTDIR)/ fclean
+	rm -f $(NAME)
+	
+
+# Not a target:
+srcs/list_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean push_swap
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 38):
+	$(MAKE) -C $(LIBFTDIR)/ clean
+	rm -f $(OBJS)
+	
+
+push_swap: srcs/libftextended/libft.a srcs/main.o srcs/input_parse.o srcs/list_utils.o srcs/stack_operations.o srcs/lis_algo.o srcs/lis_algo2.o srcs/cleanup_functions.o srcs/list_search.o srcs/num_utils.o srcs/move_operations.o srcs/path_find_from_b.o srcs/move_unsorted_to_b.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-20 15:38:44
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+#  commands to execute (from `Makefile', line 28):
+	gcc -ggdb3 $(OBJS) -o $(NAME) $(LIBFTDIR)/libft.a
+	
+
+# Not a target:
+srcs/lis_algo.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+srcs/main.o: srcs/main.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `srcs/main'
+#  Last modified 2022-05-20 15:38:44
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := srcs/main.o
+# automatic
+# % := 
+# automatic
+# * := srcs/main
+# automatic
+# + := srcs/main.c
+# automatic
+# | := 
+# automatic
+# < := srcs/main.c
+# automatic
+# ^ := srcs/main.c
+# automatic
+# ? := srcs/main.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/16=12%
+#  commands to execute (from `Makefile', line 25):
+	gcc -ggdb3 -I$(INCLUDEDIR) -I$(LIBFTINCLUDES) -c $< -o $@
+	
+
+# Not a target:
+srcs/move_unsorted_to_b.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/stack_operations.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=26/1024=3%, Rehash=0, Collisions=1/76=1%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Sat May 21 14:23:25 2022
+
+ 
