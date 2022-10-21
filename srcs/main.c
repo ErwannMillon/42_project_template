@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:56:50 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/18 15:13:48 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/21 13:33:40 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ int	main(int argc, char **argv)
 
 	vars = initialize(argc, argv);
 	state = create_state(vars);
+	usleep(1000);
 	checker(&state);
-	ft_printf("returned");
-	// usleep(2000000);
-	join_threads(vars, &state);
+	// // ft_printf("returned");
+	// // usleep(2000000);
+	// join_threads(vars, &state);
 	return (0);
 
 }

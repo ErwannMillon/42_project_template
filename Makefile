@@ -1,32 +1,28 @@
 SRCS := main.c \
-		input_parse.c \
-		list_utils.c \
-		stack_operations.c \
-		lis_algo.c \
-		lis_algo2.c \
-		cleanup_functions.c \
-		list_search.c \
-		num_utils.c \
-		move_operations.c \
-		path_find_from_b.c \
-		move_unsorted_to_b.c
-NAME = push_swap
+		initialization.c \
+		actions.c\
+		philo_utils.c \
+		philo_routine.c\
+		checker.c
+
+NAME = philo
 CFLAGS = -Wall -Wextra -Werror
 INCLUDEDIR = ./headers
 SRCDIR = ./srcs
 ASAN = -fsanitize=address -g
 LIBFTDIR = $(SRCDIR)/libftextended
-LIBFTINCLUDES = $(LIBFTDIR)/headers
+LFTINCLUDES = $(LIBFTDIR)/headers
 SRCSPREFIX = $(addprefix $(SRCDIR)/, $(SRCS))
 OBJS := $(SRCSPREFIX:%.c=%.o)
 #ADD CFLAGS!!!
 
 %.o: %.c
-	gcc -ggdb3 -I$(INCLUDEDIR) -I$(LIBFTINCLUDES) -c $< -o $@
+	gcc -g -I$(INCLUDEDIR) -I$(LFTINCLUDES) -c $< -o $@
 all: $(NAME)
 $(NAME): $(LIBFTDIR)/libft.a $(OBJS)
-	gcc -ggdb3 $(OBJS) $(CFLAGS) -o $(NAME) $(LIBFTDIR)/libft.a
+	gcc -g $(OBJS) $(CFLAGS) -o $(NAME) $(LIBFTDIR)/libft.a
 $(LIBFTDIR)/libft.a:
+	git submodule update --remote
 	$(MAKE) -C $(LIBFTDIR)
 test: $(LIBFTDIR)/libft.a $(OBJS)
 	gcc -fsanitize=address $(OBJS) -o test_$(NAME) $(LIBFTDIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/18 15:12:46 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 01:04:12 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,27 @@ int	join_threads(int *vars, t_state *state)
 	return (1);
 }
 
+pthread_mutex_t	*make_fork_arr(int *vars)
+{
+	int				i;
+	pthread_mutex_t	*fork_arr;
+
+	i = 0;
+	fork_arr = malloc(vars[NUM_PHILOS] * sizeof(pthread_mutex_t));
+	while (i < vars[NUM_PHILOS])
+	{
+		if (pthread_mutex_init(&fork_arr[i], NULL))
+			handle_error(vars);
+		i++;
+	}
+	return (fork_arr);
+}
+
 t_state	init_state_vars(t_philo *philos, int *vars)
 {
 	t_state	state;
 
+	state.forks = make_fork_arr(vars);
 	state.philo_arr = philos;
 	state.death = 0;
 	state.start_time = current_time();
@@ -64,6 +81,7 @@ t_state	init_state_vars(t_philo *philos, int *vars)
 		handle_error(vars);
 	return (state);
 }
+
 void	init_philo_vars(int i, t_philo *philos, t_state state, int *vars)
 {
 	philos[i].right_id = ((i + vars[NUM_PHILOS]) + 1) % vars[NUM_PHILOS];
@@ -88,12 +106,10 @@ t_state	create_state(int *vars)
 	{
 		state.thread_id = i;
 		init_philo_vars(i, philos, state, vars);
-		if (pthread_mutex_init(&philos[i].fork, NULL))
-			handle_error(vars);
 		if (pthread_create(&philos[i].philo_thread, NULL,
 				philo_main, &state))
 			handle_error(vars);
-		usleep(100000);
+		usleep(1000);
 		i++;
 	}
 	return (state);

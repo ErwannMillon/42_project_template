@@ -6,13 +6,13 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:07:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/17 16:46:28 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 01:06:12 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned long	current_time(void)
+long long current_time(void)
 {
 	struct timeval	time;
 
@@ -22,7 +22,7 @@ unsigned long	current_time(void)
 
 int	check_and_print(t_philo *philo, char *msg, t_state *state)
 {
-	unsigned long	timestamp_ms;
+	long long	timestamp_ms;
 
 	timestamp_ms = current_time() - state->start_time;
 	if (state->death || philo->error)
@@ -35,7 +35,7 @@ int	check_and_print(t_philo *philo, char *msg, t_state *state)
 
 	//ADD check for death? 
 	printf(TIMESTAMP_MSG, timestamp_ms);
-	printf(msg, philo->id);
+	printf(msg, philo->id + 1);
 	pthread_mutex_unlock(&state->writing);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/18 15:26:35 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 00:59:44 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,28 @@ int philo_sleep(t_state *state, t_philo *self)
 int	philo_eat(t_state *state, t_philo *self)
 {
 	t_philo	*philo_arr = state->philo_arr;
+	pthread_mutex_t *left_fork = &state->forks[self->id];
+	pthread_mutex_t *right_fork = &state->forks[self->right_id];
 
-	if (state->death || pthread_mutex_lock(&(philo_arr[self->left_id].fork)))
-		return (0);
+	// if (state->death || pthread_mutex_lock(&left_fork))
+	// {
+	// 	printf("Errorleft");
+	// }
+	if (pthread_mutex_lock(left_fork))
+	{
+		printf("Errorleft");
+	}
+	if (pthread_mutex_lock(right_fork))
+		printf("Errorright");
 	check_and_print(self, FORK_MSG, state);
-	if (state->death || pthread_mutex_lock(&philo_arr[self->right_id].fork))
-		return (0);
 	if (state->death || !check_and_print(self, FORK_MSG, state) \
 		|| !check_and_print(self, EAT_MSG, state))
 		return (0);
-	usleep(state->vars[TIME_TO_SLEEP] * 1000);
 	self->time_last_ate = current_time();
+	usleep(state->vars[TIME_TO_SLEEP] * 1000);
 	self->times_eaten++;
-	pthread_mutex_unlock(&philo_arr[self->left_id].fork);
-	pthread_mutex_unlock(&philo_arr[self->right_id].fork);
+	pthread_mutex_unlock(left_fork);
+	pthread_mutex_unlock(right_fork);
 	return (1);
 }
 
@@ -58,6 +66,7 @@ void	*philo_main(t_state *state)
 	i = 0;
 	self = state->philo_arr[state->thread_id];
 	self.id = id;
+	ft_printf("id: %d\n", id);
 	while (!state->death && !self.error)
 	{
 		if (!state->death &&
