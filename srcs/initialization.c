@@ -6,11 +6,31 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 01:04:12 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 03:33:15 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	handle_input_errors(char **argv, int *vars, int i)
+{
+	if (!ft_string_is_num(argv[i]))
+	{
+		printf("Error\n");
+		return (0);
+	}
+	if (i == 1 && vars[0] < 1)
+	{
+		printf("Error, no philos\n");
+		return (0);
+	}
+	if (vars[i - 1] < 1)
+	{
+		printf("Error, negative arg\n");
+		return (0);
+	}
+	return (1);
+}
 
 int	*initialize(int argc, char **argv)
 {
@@ -19,16 +39,16 @@ int	*initialize(int argc, char **argv)
 
 	i = 1;
 	if (!(argc == 5 || argc == 6 ))
+	{
+		printf("Error\n");
 		return (0);
+	}
 	vars = malloc(6 * sizeof(int));
 	while (i < argc)
 	{
-		if (!ft_string_is_num(argv[i]))
-		{
-			ft_printf("Error\n");
-			exit(0);
-		}
 		vars[i - 1] = ft_atoi(argv[i]);
+		if (!handle_input_errors(argv, vars, i))
+			return (0);
 		i++;
 	}
 	if (i == 4)
@@ -74,8 +94,8 @@ t_state	init_state_vars(t_philo *philos, int *vars)
 	state.forks = make_fork_arr(vars);
 	state.philo_arr = philos;
 	state.death = 0;
+	state.finished = 0;
 	state.start_time = current_time();
-	ft_printf("state.start_time: %d\n", state.start_time);
 	state.vars = vars;
 	if (pthread_mutex_init(&state.writing, NULL))
 		handle_error(vars);

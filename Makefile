@@ -3,7 +3,8 @@ SRCS := main.c \
 		actions.c\
 		philo_utils.c \
 		philo_routine.c\
-		checker.c
+		checker.c\
+		ft_atoi.c
 
 NAME = philo
 CFLAGS = -Wall -Wextra -Werror
@@ -17,10 +18,10 @@ OBJS := $(SRCSPREFIX:%.c=%.o)
 #ADD CFLAGS!!!
 
 %.o: %.c
-	gcc -g -I$(INCLUDEDIR) -I$(LFTINCLUDES) -c $< -o $@
+	gcc -g -I$(INCLUDEDIR) -c $< -o $@
 all: $(NAME)
 $(NAME): $(LIBFTDIR)/libft.a $(OBJS)
-	gcc -g $(OBJS) $(CFLAGS) -o $(NAME) $(LIBFTDIR)/libft.a
+	gcc -g $(OBJS) $(CFLAGS) -o $(NAME) 
 $(LIBFTDIR)/libft.a:
 	git submodule update --remote
 	$(MAKE) -C $(LIBFTDIR)

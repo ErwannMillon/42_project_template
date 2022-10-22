@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 00:59:44 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 01:30:13millon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,28 @@ int philo_sleep(t_state *state, t_philo *self)
 
 int	philo_eat(t_state *state, t_philo *self)
 {
-	t_philo	*philo_arr = state->philo_arr;
-	pthread_mutex_t *left_fork = &state->forks[self->id];
-	pthread_mutex_t *right_fork = &state->forks[self->right_id];
+	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
+	t_philo			*philo_arr = state->philo_arr;
+	pthread_mutex_t	*left_fork = &state->forks[self->id];
+	pthread_mutex_t	*right_fork = &state->forks[self->right_id];
 
 	// if (state->death || pthread_mutex_lock(&left_fork))
 	// {
 	// 	printf("Errorleft");
 	// }
-	if (pthread_mutex_lock(left_fork))
-	{
-		printf("Errorleft");
-	}
-	if (pthread_mutex_lock(right_fork))
-		printf("Errorright");
+	if ((times_must_eat && self->times_eaten >= times_must_eat) || pthread_mutex_lock(left_fork))
+		return (0);
 	check_and_print(self, FORK_MSG, state);
+	if (self->right_id == self->id)
+		return (0);
+	if ((times_must_eat && self->times_eaten >= times_must_eat) \
+		|| pthread_mutex_lock(right_fork))
+		return (0);
 	if (state->death || !check_and_print(self, FORK_MSG, state) \
 		|| !check_and_print(self, EAT_MSG, state))
 		return (0);
 	self->time_last_ate = current_time();
-	usleep(state->vars[TIME_TO_SLEEP] * 1000);
+	usleep(state->vars[TIME_TO_EAT] * 1000);
 	self->times_eaten++;
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_unlock(right_fork);
@@ -49,9 +51,20 @@ int	philo_eat(t_state *state, t_philo *self)
 
 int	philo_routine(t_state *state, t_philo *self)
 {
-	if (state->death || !philo_eat(state, self))
+	const int	times_must_eat = state->vars[TIMES_MUST_EAT];
+
+	if (state->vars[NUM_PHILOS] == 1)
+	{
+		check_and_print(self, FORK_MSG, state);
 		return (0);
-	if (state->death || !philo_sleep(state, self))
+	}
+	if (state->death || \
+		(times_must_eat && self->times_eaten >= times_must_eat) || \
+		!philo_eat(state, self))
+		return (0);
+	if (state->death || \
+		(times_must_eat && self->times_eaten >= times_must_eat) ||
+		!philo_sleep(state, self))
 		return (0);
 	check_and_print(self, THINK_MSG, state);
 	return (1);
@@ -60,24 +73,31 @@ int	philo_routine(t_state *state, t_philo *self)
 void	*philo_main(t_state *state)
 {
 	const int		id = state->thread_id;
-	t_philo			self;
+	t_philo			*self;
 	int				i;
 
 	i = 0;
-	self = state->philo_arr[state->thread_id];
-	self.id = id;
-	ft_printf("id: %d\n", id);
-	while (!state->death && !self.error)
+	self = &state->philo_arr[state->thread_id];
+	self->id = id;
+	// ftprintf("id: %d\n", id);
+	while (!state->death && !self->error)
 	{
 		if (!state->death &&
 			(!state->vars[TIMES_MUST_EAT] \
 			|| (i < state->vars[TIMES_MUST_EAT])))
 		{
-			philo_routine(state, &self);
+			if (!philo_routine(state, self))
+				break ;
 			i++;
 		}
 		else
-			break ;
+		{
+			
+			state->finished = 1;
+			break;
+			// while (!state->death)
+			// 	continue ;
+		}
 	}
 	return (NULL);
 }
