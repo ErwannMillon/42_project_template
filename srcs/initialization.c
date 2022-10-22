@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 03:33:15 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 04:08:23 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	*initialize(int argc, char **argv)
 	int		*vars;
 
 	i = 1;
-	if (!(argc == 5 || argc == 6 ))
+	if (!(argc == 5 || argc == 6))
 	{
 		printf("Error\n");
 		return (0);
@@ -56,78 +56,48 @@ int	*initialize(int argc, char **argv)
 	return (vars);
 }
 
-int	join_threads(int *vars, t_state *state)
+t_state	*init_state_vars(t_philo *philos, int *vars)
 {
-	const t_philo	*philo_arr = state->philo_arr;
-	int				i;
+	t_state	*state;
 
-	i = 0;
-	while (i < vars[NUM_PHILOS])
-	{
-		if (pthread_join(philo_arr[i].philo_thread, NULL))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-pthread_mutex_t	*make_fork_arr(int *vars)
-{
-	int				i;
-	pthread_mutex_t	*fork_arr;
-
-	i = 0;
-	fork_arr = malloc(vars[NUM_PHILOS] * sizeof(pthread_mutex_t));
-	while (i < vars[NUM_PHILOS])
-	{
-		if (pthread_mutex_init(&fork_arr[i], NULL))
-			handle_error(vars);
-		i++;
-	}
-	return (fork_arr);
-}
-
-t_state	init_state_vars(t_philo *philos, int *vars)
-{
-	t_state	state;
-
-	state.forks = make_fork_arr(vars);
-	state.philo_arr = philos;
-	state.death = 0;
-	state.finished = 0;
-	state.start_time = current_time();
-	state.vars = vars;
-	if (pthread_mutex_init(&state.writing, NULL))
+	state = malloc(sizeof(t_state));
+	state->forks = make_fork_arr(vars);
+	state->philo_arr = philos;
+	state->death = 0;
+	state->finished = 0;
+	state->start_time = current_time();
+	state->vars = vars;
+	if (pthread_mutex_init(&state->writing, NULL))
 		handle_error(vars);
 	return (state);
 }
 
-void	init_philo_vars(int i, t_philo *philos, t_state state, int *vars)
+void	init_philo_vars(int i, t_philo *philos, \
+						t_state *state, int *vars)
 {
 	philos[i].right_id = ((i + vars[NUM_PHILOS]) + 1) % vars[NUM_PHILOS];
 	philos[i].left_id = ((i + vars[NUM_PHILOS]) - 1) % vars[NUM_PHILOS];
 	philos[i].times_eaten = 0;
 	philos[i].error = 0;
 	philos[i].time_to_death = vars[TIME_TO_DIE];
-	philos[i].time_last_ate = state.start_time;
+	philos[i].time_last_ate = state->start_time;
 }
 
-t_state	create_state(int *vars)
+t_state	*create_state(int *vars)
 {
-	t_state	state;
+	t_state	*state;
 	t_philo	*philos;
 	int		i;
-	int		fork_count;
 
 	i = 0;
 	philos = malloc(sizeof(t_philo) * vars[NUM_PHILOS]);
 	state = init_state_vars(philos, vars);
 	while (i < vars[NUM_PHILOS])
 	{
-		state.thread_id = i;
+		state->thread_id = i;
 		init_philo_vars(i, philos, state, vars);
 		if (pthread_create(&philos[i].philo_thread, NULL,
-				philo_main, &state))
+				philo_main, state))
 			handle_error(vars);
 		usleep(1000);
 		i++;

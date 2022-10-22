@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:59:30 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 03:34:58 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 04:08:15 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_state
 	int				*vars;
 	pthread_mutex_t	*forks;
 	int				death;
-	long long	start_time;
+	long long		start_time;
 	pthread_mutex_t	writing;
 	int				thread_id;
 	int				finished;
@@ -62,13 +62,13 @@ typedef struct s_state
 //INITIALIZATION
 
 int				*initialize(int argc, char **argv);
-t_state			create_state(int *vars);
+t_state			*create_state(int *vars);
 int				create_fork(t_philo *philo);
 
 //PHILO ROUTINES
 int				philo_eat(t_state *state, t_philo *philo);
 int				philo_routine(t_state *state, t_philo *philo);
-void			*philo_main(t_state *state);
+void			*philo_main(void *arg);
 
 //PHILO UTILS
 long long		time_diff(long long start_time);
@@ -76,10 +76,11 @@ long long		current_time(void);
 int				check_and_print(t_philo *philo, char *msg, t_state *state);
 void			handle_error(int *vars);
 void			checker(t_state *state);
-
 //THREAD UTILS
+
 int				join_threads(int *vars, t_state *state);
 void			destroy_mutexes(t_state *state);
+pthread_mutex_t	*make_fork_arr(int *vars);
 
 //PARSE UTILS
 int				ft_atoi(const char *str);

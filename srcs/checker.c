@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:56:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 03:20:33 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/22 04:09:50 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	check_times_eaten(t_state *state, int i, long long time_diff)
 {
 	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
-	const t_philo	*philo_arr;
 
-	philo_arr = state->philo_arr;
 	if (time_diff > state->vars[TIME_TO_DIE])
 	{
 		if (times_must_eat && state->philo_arr[i].times_eaten < times_must_eat)
@@ -43,10 +41,8 @@ int	all_alive(t_state *state)
 	int				i;
 	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
 	long long		time_diff;
-	t_philo			*philo_arr;
 	int				num_sated;
 
-	philo_arr = state->philo_arr;
 	i = 0;
 	num_sated = 0;
 	while (i < state->vars[NUM_PHILOS])
