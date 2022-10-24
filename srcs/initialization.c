@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 04:08:23 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/24 18:19:59 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_state	*create_state(int *vars)
 		if (pthread_create(&philos[i].philo_thread, NULL,
 				philo_main, state))
 			handle_error(vars);
-		usleep(1000);
+		usleep(10);
 		i++;
 	}
 	return (state);
