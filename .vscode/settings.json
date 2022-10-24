@@ -5,7 +5,8 @@
     "pthread.h": "c",
     "stdio.h": "c",
     "time.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "philo.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

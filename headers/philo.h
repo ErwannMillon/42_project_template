@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:59:30 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 18:09:00 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:27:02 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ long long		current_time(void);
 int				check_and_print(t_philo *philo, char *msg, t_state *state);
 void			handle_error(int *vars);
 void			checker(t_state *state);
+int				check_times_eaten(t_state *state, t_philo *self);
+
 //THREAD UTILS
 
 int				join_threads(int *vars, t_state *state);

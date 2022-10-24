@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:07:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 18:28:08 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:27:03 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,15 @@ int	check_and_print(t_philo *philo, char *msg, t_state *state)
 	if (state->death)
 		return (0);
 	return (1);
+}
+
+int	check_times_eaten(t_state *state, t_philo *self)
+{
+	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
+
+	if (times_must_eat && self->times_eaten >= times_must_eat)
+		return (1);
+	if (!times_must_eat)
+		return (1);
+	return (0);
 }

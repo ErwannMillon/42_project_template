@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 18:19:59 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:11:01 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int	*initialize(int argc, char **argv)
 	{
 		vars[i - 1] = ft_atoi(argv[i]);
 		if (!handle_input_errors(argv, vars, i))
+		{
+			free(vars);
 			return (0);
+		}
 		i++;
 	}
 	if (i == 4)

@@ -6,21 +6,20 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:56:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 18:54:24 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:26:06 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_times_eaten(t_state *state, int i, long long time_diff)
+int	times_eaten_checker(t_state *state, int i, long long time_diff)
 {
 	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
-	// printf("VERIF");
+
 	if (time_diff > state->vars[TIME_TO_DIE])
 	{
 		if (times_must_eat && state->philo_arr[i].times_eaten < times_must_eat)
 		{
-			// printf("TEST");
 			pthread_mutex_lock(&state->writing);
 			printf("%lld ms %d has died", \
 					current_time() - state->start_time, i + 1);
@@ -51,11 +50,9 @@ int	all_alive(t_state *state)
 	while (i < state->vars[NUM_PHILOS])
 	{
 		time_diff = current_time() - state->philo_arr[i].time_last_ate;
-		// printf("%lld id:%d, timediff %lld \n", current_time() - state->start_time, i, time_diff);
 		if (times_must_eat && state->philo_arr[i].times_eaten >= times_must_eat)
 			num_sated++;
-		// printf("call check\n");
-		if (!check_times_eaten(state, i, time_diff))
+		if (!times_eaten_checker(state, i, time_diff))
 			return (0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:56:50 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 18:19:48 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:18:50 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	cleanup(t_state *state)
 	free(state->vars);
 	free(state->philo_arr);
 	free(state->forks);
+	free(state);
 }
 
 void	handle_error(int *vars)
@@ -37,9 +38,11 @@ int	main(int argc, char **argv)
 	state = create_state(vars);
 	usleep(10);
 	checker(state);
-	usleep(100);
+	while (!state->death)
+		usleep(100);
 	join_threads(vars, state);
-	// destroy_mutexes(state);
+	pthread_mutex_unlock(&state->writing);
+	destroy_mutexes(state);
 	cleanup(state);
 	return (0);
 }
