@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:59:30 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/28 15:06:41 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 15:07:42 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int				ft_atoi(const char *str);
 int				ft_string_is_num(char *str);
 
 //CHecker
-int	all_alive(t_state *state);
+int				all_alive(t_state *state);
 
 //ERROR HANDLE
 int				check_int_lim(char *arg);

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:56:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/28 14:19:41 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 15:08:16 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,6 @@ int	times_eaten_checker(t_state *state, int i, long long time_diff)
 {
 	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
 
-	// if (time_diff > state->vars[TIME_TO_DIE])
-	// {
-	// 	if (times_must_eat && state->philo_arr[i].times_eaten < times_must_eat)
-	// 	{
-	// 		state->death = 1;
-	// 		pthread_mutex_lock(&state->writing);
-	// 		printf("%lld ms %d has died", \
-	// 				current_time() - state->start_time, i + 1);
-	// 		return (0);
-	// 	}		
-	// 	else if (!times_must_eat)
-	// 	{
-	// 		state->death = 1;
-	// 		pthread_mutex_lock(&state->writing);
-	// 		printf("%lld ms %d has died", \
-	// 				current_time() - state->start_time, i + 1);
-	// 		return (0);
-	// 	}
-	// }
 	if (time_diff > state->vars[TIME_TO_DIE])
 	{
 		if (!times_must_eat)
@@ -46,7 +27,7 @@ int	times_eaten_checker(t_state *state, int i, long long time_diff)
 			usleep(10);
 		}
 		if (times_must_eat && state->philo_arr[i].times_eaten < times_must_eat)
-		{ 
+		{
 			state->death = 1;
 			pthread_mutex_lock(&state->writing);
 			printf("%lld ms %d has died", \
@@ -61,7 +42,6 @@ int	times_eaten_checker(t_state *state, int i, long long time_diff)
 int	all_alive(t_state *state)
 {
 	int				i;
-	// const int		times_must_eat = state->vars[TIMES_MUST_EAT];
 	long long		time_diff;
 	int				num_sated;
 
@@ -74,13 +54,6 @@ int	all_alive(t_state *state)
 			return (0);
 		i++;
 	}
-	// if (num_sated && num_sated == state->vars[NUM_PHILOS] - 1)
-	// {
-	// 	state->death = 1;
-	// 	// pthread_mutex_lock(&state->writing);
-	// 	printf("All philos have eaten %d meals", state->vars[TIMES_MUST_EAT]);
-	// 	return (0);
-	// }
 	return (1);
 }
 

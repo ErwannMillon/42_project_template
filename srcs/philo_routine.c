@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:45:41 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/28 14:54:26 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 15:08:49 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,12 @@ int	get_forks(t_state *state, t_philo *self)
 	return (1);
 }
 
-
 int	philo_eat(t_state *state, t_philo *self)
 {
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	int				wait;
 
-	// printf("eat\n");
 	left_fork = &state->forks[self->id];
 	right_fork = &state->forks[self->right_id];
 	if (!get_forks(state, self))
@@ -76,12 +74,12 @@ int	philo_eat(t_state *state, t_philo *self)
 int	philo_routine(t_state *state, t_philo *self)
 {
 	const int	times_must_eat = state->vars[TIMES_MUST_EAT];
+
 	if (state->vars[NUM_PHILOS] == 1)
 	{
 		check_and_print(self, FORK_MSG, state);
 		return (0);
 	}
-	// printf("state->death: %d\n", state->death);
 	if (state->death || \
 		(times_must_eat && self->times_eaten >= times_must_eat) \
 			|| !philo_eat(state, self))
@@ -90,7 +88,6 @@ int	philo_routine(t_state *state, t_philo *self)
 		pthread_mutex_unlock(&state->forks[self->right_id]);
 		return (0);
 	}
-	// printf("%d doneeating\n", self->id + 1);
 	if (state->death || \
 		(times_must_eat && self->times_eaten > times_must_eat) \
 			|| !philo_sleep(state, self))
@@ -113,9 +110,6 @@ void	*philo_main(void *arg)
 	self->id = id;
 	while (!state->death && !self->error)
 	{
-		// printf("%d main state %d\n", id + 1, state->death);
-		// printf("state->vars[TIMES_MUST_EAT]: %d\n", state->vars[TIMES_MUST_EAT]);
-		// printf("self->times_eaten: %d\n", self->times_eaten);
 		if (!state->death && \
 			(!state->vars[TIMES_MUST_EAT] || \
 			(self->times_eaten < state->vars[TIMES_MUST_EAT])))
@@ -127,6 +121,5 @@ void	*philo_main(void *arg)
 		else
 			break ;
 	}
-	// printf("%d break", id + 1);
 	return (NULL);
 }
