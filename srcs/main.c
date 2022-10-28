@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:56:50 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 19:18:50 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:51:43 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ int	main(int argc, char **argv)
 	if (!vars)
 		return (0);
 	state = create_state(vars);
-	usleep(10);
-	checker(state);
-	while (!state->death)
-		usleep(100);
+	while (all_alive(state))
+		continue ;
+	// printf("return");
+	// while (!state->death)
+	usleep(100);
 	join_threads(vars, state);
 	pthread_mutex_unlock(&state->writing);
-	destroy_mutexes(state);
+	// destroy_mutexes(state);
 	cleanup(state);
 	return (0);
 }

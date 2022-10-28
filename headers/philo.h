@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:59:30 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 19:27:02 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 15:06:41 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,12 @@ pthread_mutex_t	*make_fork_arr(int *vars);
 //PARSE UTILS
 int				ft_atoi(const char *str);
 int				ft_string_is_num(char *str);
+
+//CHecker
+int	all_alive(t_state *state);
+
+//ERROR HANDLE
+int				check_int_lim(char *arg);
+int				handle_input_errors(char **argv, int *vars, int i);
 
 #endif

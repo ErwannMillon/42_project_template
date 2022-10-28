@@ -6,31 +6,11 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 19:11:01 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 15:02:07 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	handle_input_errors(char **argv, int *vars, int i)
-{
-	if (!ft_string_is_num(argv[i]))
-	{
-		printf("Error\n");
-		return (0);
-	}
-	if (i == 1 && vars[0] < 1)
-	{
-		printf("Error, no philos\n");
-		return (0);
-	}
-	if (vars[i - 1] < 1)
-	{
-		printf("Error, negative arg\n");
-		return (0);
-	}
-	return (1);
-}
 
 int	*initialize(int argc, char **argv)
 {
@@ -40,7 +20,7 @@ int	*initialize(int argc, char **argv)
 	i = 1;
 	if (!(argc == 5 || argc == 6))
 	{
-		printf("Error\n");
+		printf("Error, must provide 4 or 5 args\n");
 		return (0);
 	}
 	vars = malloc(6 * sizeof(int));
@@ -54,8 +34,8 @@ int	*initialize(int argc, char **argv)
 		}
 		i++;
 	}
-	if (i == 4)
-		vars[5] = 0;
+	if (argc == 5)
+		vars[4] = 0;
 	return (vars);
 }
 
@@ -102,7 +82,7 @@ t_state	*create_state(int *vars)
 		if (pthread_create(&philos[i].philo_thread, NULL,
 				philo_main, state))
 			handle_error(vars);
-		usleep(10);
+		usleep(100);
 		i++;
 	}
 	return (state);

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:38:15 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/22 03:47:51 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:07:03 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	join_threads(int *vars, t_state *state)
 			return (0);
 		i++;
 	}
+	if (!state->death && state->vars[TIMES_MUST_EAT] > 0)
+		printf("all philos have eaten %d meals", state->vars[TIMES_MUST_EAT]);
 	return (1);
 }
 

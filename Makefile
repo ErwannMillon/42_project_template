@@ -5,7 +5,8 @@ SRCS := main.c \
 		philo_routine.c\
 		checker.c\
 		ft_atoi.c\
-		pthread_utils.c
+		pthread_utils.c\
+		error_handling.c
 
 NAME = philo
 CFLAGS = -Wall -Wextra -Werror
