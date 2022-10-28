@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:45:41 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/24 19:27:10 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/26 01:05:55 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ int	philo_sleep(t_state *state, t_philo *self)
 
 int	get_forks(t_state *state, t_philo *self)
 {
+	const int		times_must_eat = state->vars[TIMES_MUST_EAT];
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 
 	left_fork = &state->forks[self->id];
 	right_fork = &state->forks[self->right_id];
-	if (state->death || check_times_eaten(state, self)
+	if (state->death || (times_must_eat && self->times_eaten >= times_must_eat) \
 		|| pthread_mutex_lock(left_fork))
 		return (0);
 	check_and_print(self, FORK_MSG, state);
-	if (state->death || check_times_eaten(state, self)
-		|| pthread_mutex_lock(right_fork))
+	if (state->death || (times_must_eat && self->times_eaten >= times_must_eat) \
+			|| pthread_mutex_lock(right_fork))
 	{
 		pthread_mutex_unlock(left_fork);
 		return (0);
@@ -55,6 +56,7 @@ int	get_forks(t_state *state, t_philo *self)
 	return (1);
 }
 
+
 int	philo_eat(t_state *state, t_philo *self)
 {
 	pthread_mutex_t	*left_fork;
@@ -63,15 +65,15 @@ int	philo_eat(t_state *state, t_philo *self)
 
 	left_fork = &state->forks[self->id];
 	right_fork = &state->forks[self->right_id];
-	wait = 0;
 	if (!get_forks(state, self))
 		return (0);
 	self->time_last_ate = current_time();
-	while (!state->death && wait < state->vars[TIME_TO_EAT] * 100)
-	{
-		usleep(10);
-		wait++;
-	}
+	wait = 0;
+	// while (!state->death && wait < state->vars[TIME_TO_EAT] * 100)
+	// {
+	// 	usleep(10);
+	// 	wait++;
+	// }
 	self->times_eaten++;
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_unlock(right_fork);
@@ -80,20 +82,24 @@ int	philo_eat(t_state *state, t_philo *self)
 
 int	philo_routine(t_state *state, t_philo *self)
 {
+	const int	times_must_eat = state->vars[TIMES_MUST_EAT];
+
 	if (state->vars[NUM_PHILOS] == 1)
 	{
 		check_and_print(self, FORK_MSG, state);
 		return (0);
 	}
-	if (state->death || check_times_eaten(state, self)
-		|| !philo_eat(state, self))
+	if (state->death || \
+		(times_must_eat && self->times_eaten >= times_must_eat) \
+			|| !philo_eat(state, self))
 	{
 		pthread_mutex_unlock(&state->forks[self->id]);
 		pthread_mutex_unlock(&state->forks[self->right_id]);
 		return (0);
 	}
-	if (state->death || check_times_eaten(state, self)
-		|| !philo_sleep(state, self))
+	if (state->death || \
+		(times_must_eat && self->times_eaten >= times_must_eat) \
+			|| !philo_sleep(state, self))
 		return (0);
 	check_and_print(self, THINK_MSG, state);
 	return (1);
