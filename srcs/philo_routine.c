@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:45:41 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/28 15:08:49 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/10/29 22:08:16 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 int	philo_sleep(t_state *state, t_philo *self)
 {
-	int	wait;
-
-	pthread_mutex_lock(&state->writing);
-	pthread_mutex_unlock(&state->writing);
 	check_and_print(self, SLEEP_MSG, state);
-	wait = 0;
 	usleep(state->vars[TIME_TO_SLEEP] * 1000);
 	return (1);
 }
@@ -56,16 +51,14 @@ int	philo_eat(t_state *state, t_philo *self)
 {
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	int				wait;
 
 	left_fork = &state->forks[self->id];
 	right_fork = &state->forks[self->right_id];
 	if (!get_forks(state, self))
 		return (0);
 	self->time_last_ate = current_time();
-	wait = 0;
-	usleep(state->vars[TIME_TO_EAT] * 1000);
 	self->times_eaten++;
+	usleep(state->vars[TIME_TO_EAT] * 1000);
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_unlock(right_fork);
 	return (1);

@@ -43,10 +43,8 @@ int	all_alive(t_state *state)
 {
 	int				i;
 	long long		time_diff;
-	int				num_sated;
 
 	i = 0;
-	num_sated = 0;
 	while (i < state->vars[NUM_PHILOS])
 	{
 		time_diff = current_time() - state->philo_arr[i].time_last_ate;
