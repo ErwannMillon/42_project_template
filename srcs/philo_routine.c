@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:45:41 by gmillon           #+#    #+#             */
-/*   Updated: 2022/11/02 21:11:12 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/02 21:19:11 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	philo_sleep(t_state *state, t_philo *self)
 	check_and_print(self, SLEEP_MSG, state);
 	while (current_time() - self->time_finished_meal \
 			< state->vars[TIME_TO_SLEEP])
-		usleep(50);
+		usleep(5);
 	return (1);
 }
 
@@ -61,7 +61,7 @@ int	philo_eat(t_state *state, t_philo *self)
 	self->time_last_ate = current_time();
 	self->times_eaten++;
 	while (current_time() - self->time_last_ate < state->vars[TIME_TO_EAT])
-		usleep(50);
+		usleep(5);
 	self->time_finished_meal = current_time();
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_unlock(right_fork);
@@ -99,25 +99,19 @@ void	*philo_main(void *arg)
 {
 	t_philo			*self;
 	int				id;
-	int				i;
 	t_state			*state;
 
 	state = (t_state *)arg;
 	id = state->thread_id;
-	i = 0;
 	self = &state->philo_arr[id];
 	self->id = id;
-	while (!state->death && !self->error)
+	if (id == 1)
+		state->start_time = current_time();
+	while (!state->death && \
+		(!state->vars[TIMES_MUST_EAT] || \
+		(self->times_eaten < state->vars[TIMES_MUST_EAT])))
 	{
-		if (!state->death && \
-			(!state->vars[TIMES_MUST_EAT] || \
-			(self->times_eaten < state->vars[TIMES_MUST_EAT])))
-		{
-			if (!philo_routine(state, self))
-				break ;
-			i++;
-		}
-		else
+		if (!philo_routine(state, self))
 			break ;
 	}
 	return (NULL);
