@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:45:41 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/29 22:08:16 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/02 21:11:12 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	philo_sleep(t_state *state, t_philo *self)
 {
 	check_and_print(self, SLEEP_MSG, state);
-	usleep(state->vars[TIME_TO_SLEEP] * 1000);
+	while (current_time() - self->time_finished_meal \
+			< state->vars[TIME_TO_SLEEP])
+		usleep(50);
 	return (1);
 }
 
@@ -58,7 +60,9 @@ int	philo_eat(t_state *state, t_philo *self)
 		return (0);
 	self->time_last_ate = current_time();
 	self->times_eaten++;
-	usleep(state->vars[TIME_TO_EAT] * 1000);
+	while (current_time() - self->time_last_ate < state->vars[TIME_TO_EAT])
+		usleep(50);
+	self->time_finished_meal = current_time();
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_unlock(right_fork);
 	return (1);
@@ -66,8 +70,10 @@ int	philo_eat(t_state *state, t_philo *self)
 
 int	philo_routine(t_state *state, t_philo *self)
 {
-	const int	times_must_eat = state->vars[TIMES_MUST_EAT];
+	static int	times_must_eat = -1 ;
 
+	if (times_must_eat == -1)
+		times_must_eat = state->vars[TIMES_MUST_EAT];
 	if (state->vars[NUM_PHILOS] == 1)
 	{
 		check_and_print(self, FORK_MSG, state);

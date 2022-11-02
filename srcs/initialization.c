@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 11:56:47 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/29 22:05:42 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:43:02 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_state	*init_state_vars(t_philo *philos, int *vars)
 	state->philo_arr = philos;
 	state->death = 0;
 	state->finished = 0;
+	state->ready = 0;
 	state->start_time = current_time();
 	state->vars = vars;
 	if (pthread_mutex_init(&state->writing, NULL))

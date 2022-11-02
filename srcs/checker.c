@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:56:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/28 15:08:16 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/02 21:09:23 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	times_eaten_checker(t_state *state, int i, long long time_diff)
 			pthread_mutex_lock(&state->writing);
 			printf("%lld ms %d has died", \
 					current_time() - state->start_time, i + 1);
-			usleep(10);
 		}
 		if (times_must_eat && state->philo_arr[i].times_eaten < times_must_eat)
 		{
@@ -32,7 +31,6 @@ int	times_eaten_checker(t_state *state, int i, long long time_diff)
 			pthread_mutex_lock(&state->writing);
 			printf("%lld ms %d has died", \
 					current_time() - state->start_time, i + 1);
-			usleep(10);
 		}
 		return (0);
 	}

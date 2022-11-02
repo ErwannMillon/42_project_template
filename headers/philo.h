@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 14:59:30 by gmillon           #+#    #+#             */
-/*   Updated: 2022/10/28 15:07:42 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:53:43 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo
 	long long		time_last_ate;
 	int				time_to_death;
 	int				error;
+	long long		time_finished_meal;
 }				t_philo;
 
 typedef struct s_state
@@ -57,6 +58,8 @@ typedef struct s_state
 	pthread_mutex_t	writing;
 	int				thread_id;
 	int				finished;
+	double			scalar;
+	int				ready;
 }				t_state;
 
 //INITIALIZATION

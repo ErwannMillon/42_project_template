@@ -29,8 +29,8 @@ $(LIBFTDIR)/libft.a:
 	$(MAKE) -C $(LIBFTDIR)
 test: $(LIBFTDIR)/libft.a $(OBJS)
 	gcc -fsanitize=address $(OBJS) -o test_$(NAME) $(LIBFTDIR)/libft.a
-asan: $(LIBFTDIR)/libft.a $(OBJS)
-	gcc -fsanitize=address $(OBJS) -o $(NAME) $(LIBFTDIR)/libft.a
+asan: $(OBJS)
+	gcc -fsanitize=address $(OBJS) -o $(NAME) 
 git:
 	git add $(SRCSPREFIX) Makefile $(INCLUDEDIR) .gitmodules
 clean:
