@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 03:45:41 by gmillon           #+#    #+#             */
-/*   Updated: 2022/11/02 21:19:11 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/08 02:51:45 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	philo_eat(t_state *state, t_philo *self)
 	self->time_last_ate = current_time();
 	self->times_eaten++;
 	while (current_time() - self->time_last_ate < state->vars[TIME_TO_EAT])
-		usleep(5);
+		usleep(10);
 	self->time_finished_meal = current_time();
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_unlock(right_fork);

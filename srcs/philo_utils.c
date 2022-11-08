@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:07:08 by gmillon           #+#    #+#             */
-/*   Updated: 2022/11/02 21:10:31 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/08 02:53:11 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	check_and_print(t_philo *philo, char *msg, t_state *state)
 {
 	long long	timestamp_ms;
 
-	timestamp_ms = current_time() - state->start_time;
 	if (state->death || philo->error)
 		return (0);
 	if (!state->death && pthread_mutex_lock(&state->writing))
 		return (0);
 	if (!state->death)
 	{
+		timestamp_ms = current_time() - state->start_time;
 		printf(TIMESTAMP_MSG, timestamp_ms);
 		printf(msg, philo->id + 1);
 	}
